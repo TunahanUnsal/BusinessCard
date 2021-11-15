@@ -3,19 +3,18 @@ package com.senior.businesscard.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.senior.businesscard.R;
-import com.senior.businesscard.databinding.ActivityMainBinding;
+import com.senior.businesscard.databinding.ActivitySplashBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    ActivitySplashBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         listeners();
