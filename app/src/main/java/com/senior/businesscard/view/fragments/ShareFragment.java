@@ -12,6 +12,15 @@ import android.view.ViewGroup;
 import com.senior.businesscard.R;
 import com.senior.businesscard.databinding.FragmentShareBinding;
 
+//          Code with 🥂
+//  ┌──────────────────────────┐
+//  │ Created by Tuna UNSAL    │
+//  │ ──────────────────────── │
+//  │ tuna.maeglini@gmail.com  │
+//  │ ──────────────────────── │
+//  │    15.11.2021  21:46     │
+//  └──────────────────────────┘
+
 public class ShareFragment extends Fragment {
 
     private FragmentShareBinding binding;
