@@ -2,4 +2,14 @@
     <string name="app_name">BusinessCard</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="qr_code">qr code</string>
+    <string name="history">History</string>
+    <string name="name">Name</string>
+    <string name="design">Design</string>
+    <string name="lastname">Lastname</string>
+    <string name="mail">Mail</string>
+    <string name="phone_number">Phone number</string>
+    <string name="company_name">Company name</string>
+    <string name="job_description">Job description</string>
+    <string name="create_qr_code">Create QR Code</string>
 </resources>

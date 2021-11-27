@@ -1,5 +1,6 @@
 package com.senior.businesscard.view.fragments;
 
+import static com.senior.businesscard.view.activities.MainActivity.designFragment;
 import static com.senior.businesscard.view.activities.MainActivity.historyFragment;
 import static com.senior.businesscard.view.activities.MainActivity.scanFragment;
 import android.annotation.SuppressLint;
@@ -52,8 +53,9 @@ public class DesignFragment extends Fragment {
 
             public void onSwipeRight() {
 
-                Log.d("TAG", "onSwipeLeft: asdasd");
+                Log.d("TAG", "onSwipeRight");
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
                 transaction.replace(R.id.fragment_container, scanFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -61,8 +63,9 @@ public class DesignFragment extends Fragment {
             }
             public void onSwipeLeft() {
 
-                Log.d("TAG", "onSwipeLeft: asdasd2");
+                Log.d("TAG", "onSwipeLeft");
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
                 transaction.replace(R.id.fragment_container, historyFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

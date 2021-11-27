@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_color">#233B4F</color>
     <color name="icon_color">#C5C3BF</color>
+    <color name="history_color">#A97E0D</color>
+    <color name="login_color">#953030</color>
 </resources>

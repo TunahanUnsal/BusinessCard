@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tool:background="@android:color/background_dark"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/history_list_item_background"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_marginStart="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/qr_code"
+            android:src="@drawable/ic_qr_code_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_name"
+            android:layout_marginStart="20dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="@font/mplus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="Tuna Ünsal" />
+
+        <TextView
+            android:id="@+id/textView_date"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="12sp"
+            android:fontFamily="@font/mplus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="18 Ocak 2021" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</FrameLayout>

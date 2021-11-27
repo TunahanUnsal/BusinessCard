@@ -26,14 +26,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         UiUtils.hideSystemUI(binding.getRoot());
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        Intent myIntent = new Intent(SplashActivity.this, MainActivity.class);
+                        Intent myIntent = new Intent(SplashActivity.this, LoginActivity.class);
                         startActivity(myIntent);
                     }
                 },

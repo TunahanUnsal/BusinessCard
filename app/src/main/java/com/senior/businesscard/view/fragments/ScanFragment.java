@@ -61,6 +61,7 @@ public class ScanFragment extends Fragment {
             requestPermissions(new String[] {Manifest.permission.CAMERA}, 1);
         }
 
+        startCam();
         listeners();
 
         return binding.getRoot();
@@ -69,7 +70,7 @@ public class ScanFragment extends Fragment {
     @SuppressLint("ClickableViewAccessibility")
     private void listeners(){
 
-        binding.generalView.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+        binding.scannerView.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
 
 
             public void onSwipeRight() {
@@ -78,6 +79,7 @@ public class ScanFragment extends Fragment {
             public void onSwipeLeft() {
 
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
                 transaction.replace(R.id.fragment_container, designFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -85,6 +87,9 @@ public class ScanFragment extends Fragment {
             }
 
         });
+
+    }
+    public void startCam(){
 
         CodeScannerView scannerView = binding.scannerView;
 
