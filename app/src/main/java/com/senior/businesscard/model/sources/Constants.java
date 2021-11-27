@@ -9,5 +9,5 @@ package com.senior.businesscard.model.sources;
 //  │    15.11.2021  21:47     │
 //  └──────────────────────────┘
 
-public class Constants {
+public class Constants {//
 }
