@@ -12,4 +12,5 @@
     <string name="company_name">Company name</string>
     <string name="job_description">Job description</string>
     <string name="create_qr_code">Create QR Code</string>
+    <string name="share">Share</string>
 </resources>

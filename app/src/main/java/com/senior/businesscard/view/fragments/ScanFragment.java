@@ -1,36 +1,22 @@
 package com.senior.businesscard.view.fragments;
 
 import static com.senior.businesscard.view.activities.MainActivity.designFragment;
-import static com.senior.businesscard.view.activities.MainActivity.historyFragment;
-import static com.senior.businesscard.view.activities.MainActivity.scanFragment;
-import static com.senior.businesscard.view.activities.MainActivity.transaction;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
+import android.webkit.WebViewClient;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
-import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.Result;
 import com.senior.businesscard.R;
 import com.senior.businesscard.databinding.FragmentScanBinding;
 import com.senior.businesscard.view.utils.OnSwipeTouchListener;
-
-import java.util.Objects;
-
 
 //          Code with 🥂
 //  ┌──────────────────────────┐
@@ -95,7 +81,18 @@ public class ScanFragment extends Fragment {
 
         mCodeScanner = new CodeScanner(requireActivity(), scannerView);
 
-        mCodeScanner.setDecodeCallback(result -> requireActivity().runOnUiThread(() -> Toast.makeText(getActivity(), result.getText(), Toast.LENGTH_SHORT).show()));
+        mCodeScanner.setDecodeCallback(result -> requireActivity().runOnUiThread(() -> {
+
+
+            binding.scannerView.setVisibility(View.GONE);
+            binding.webView.setVisibility(View.VISIBLE);
+            binding.webView.loadUrl(result.getText());
+            binding.webView.setWebViewClient(new WebViewClient());
+            binding.webView.setInitialScale(1);
+            binding.webView.getSettings().setBuiltInZoomControls(true);
+            binding.webView.getSettings().setUseWideViewPort(true);
+
+        }));
 
         scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
 
