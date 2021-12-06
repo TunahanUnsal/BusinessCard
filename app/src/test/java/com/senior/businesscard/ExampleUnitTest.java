@@ -1,4 +1,4 @@
-package com.senior.businesscard;
+package app.web.firmcard;
 
 import org.junit.Test;
 

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "713738358896",
+    "project_id": "firm-card",
+    "storage_bucket": "firm-card.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713738358896:android:4b908158263e89f1e324b5",
+        "android_client_info": {
+          "package_name": "app.web.firmcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713738358896-fbk1fdash2v7jkhfs8v4ufhsv7p2fnkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.web.firmcard",
+            "certificate_hash": "05a7b42a04f745243b30fb047c095f20c12bb3ff"
+          }
+        },
+        {
+          "client_id": "713738358896-csg3cga0qqak3rv2r6tv6o6d0h13nj6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvxXC0hWAN7TZeS66O5jLf5ksaCz4txKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713738358896-csg3cga0qqak3rv2r6tv6o6d0h13nj6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

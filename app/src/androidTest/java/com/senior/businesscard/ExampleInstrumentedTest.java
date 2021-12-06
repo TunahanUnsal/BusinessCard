@@ -1,4 +1,4 @@
-package com.senior.businesscard;
+package app.web.firmcard;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.senior.businesscard", appContext.getPackageName());
+        assertEquals("app.web.firmcard", appContext.getPackageName());
     }
 }
