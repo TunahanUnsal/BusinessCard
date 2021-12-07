@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         binding.btnGoogleSignIn.setOnClickListener(v -> {
 
-
             GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
                     .build();
@@ -62,9 +61,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
             startActivityForResult(intent,RC_SIGN_IN);
 
-
         });
-
     }
 
     public void test(){

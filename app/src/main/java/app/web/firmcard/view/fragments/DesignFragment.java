@@ -30,7 +30,6 @@ import app.web.firmcard.databinding.FragmentDesignBinding;
 import app.web.firmcard.model.models.BusinessCardModel;
 import app.web.firmcard.view.utils.OnSwipeTouchListener;
 import java.util.Date;
-import java.util.Objects;
 
 //          Code with 🥂
 //  ┌──────────────────────────┐

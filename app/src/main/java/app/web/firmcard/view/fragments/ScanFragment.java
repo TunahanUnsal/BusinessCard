@@ -81,6 +81,8 @@ public class ScanFragment extends Fragment {
 
         mCodeScanner = new CodeScanner(requireActivity(), scannerView);
 
+        scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
+
         mCodeScanner.setDecodeCallback(result -> requireActivity().runOnUiThread(() -> {
 
 
@@ -94,7 +96,7 @@ public class ScanFragment extends Fragment {
 
         }));
 
-        scannerView.setOnClickListener(view -> mCodeScanner.startPreview());
+
 
     }
 }
