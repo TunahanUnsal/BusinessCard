@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public static Fragment historyFragment;
     public static Fragment designFragment;
     public static FragmentTransaction transaction;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,35 +72,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
 
     }
-    private void writeFirebase(){
-        // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("user_id", Constants.googleSignInAccount.getId());
 
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(documentReference -> Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId()))
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error adding document", e);
-                    }
-                });
-    }
-    private void readFirebase(){
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("TAG", document.getId() + " => " + document.getData());
-                        }
-                    } else {
-                        Log.w("TAG", "Error getting documents.", task.getException());
-                    }
-                });
-    }
 }

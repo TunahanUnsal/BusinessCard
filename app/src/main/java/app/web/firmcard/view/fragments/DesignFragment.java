@@ -21,6 +21,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
@@ -28,8 +33,12 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import app.web.firmcard.R;
 import app.web.firmcard.databinding.FragmentDesignBinding;
 import app.web.firmcard.model.models.BusinessCardModel;
+import app.web.firmcard.model.sources.Constants;
 import app.web.firmcard.view.utils.OnSwipeTouchListener;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 //          Code with 🥂
 //  ┌──────────────────────────┐
@@ -44,6 +53,7 @@ import java.util.Date;
 public class DesignFragment extends Fragment {
 
     FragmentDesignBinding binding;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +64,8 @@ public class DesignFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDesignBinding.inflate(inflater,container,false);
+
+        readFirebase();
 
         listeners();
 
@@ -91,11 +103,15 @@ public class DesignFragment extends Fragment {
 
         binding.createButton.setOnClickListener(v -> {
 
-            String url = "https://www.bitswot.com/p";
+
+            String url = "https://firm-card.web.app/" + Constants.googleSignInAccount.getId();
+
 
             Date date = new Date();
-            BusinessCardModel businessCardModel = new BusinessCardModel(url,date.toString(),binding.editTextName.toString(),
-                    binding.editTextPhone.toString(),binding.editTextMail.toString(),binding.editTextCompany.toString(),binding.editTextJob.toString());
+            BusinessCardModel businessCardModel = new BusinessCardModel(url,date.toString(),binding.editTextName.getText().toString(),
+                    binding.editTextPhone.getText().toString(),binding.editTextMail.getText().toString(),binding.editTextCompany.getText().toString(),binding.editTextJob.getText().toString());
+
+            writeFirebase(businessCardModel);
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
@@ -103,7 +119,6 @@ public class DesignFragment extends Fragment {
                 BitMatrix bitMatrix = multiFormatWriter.encode(url, BarcodeFormat.QR_CODE,300,300);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                //imageView.setImageBitmap(bitmap);
                 onButtonShowPopupWindowClick(binding.getRoot(),bitmap,url);
             }catch (Exception e){
                 e.printStackTrace();
@@ -136,7 +151,6 @@ public class DesignFragment extends Fragment {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             String shareBody = "Hello, there is my business card : " + url;
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, url);
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
         });
@@ -144,6 +158,47 @@ public class DesignFragment extends Fragment {
 
 
 
+    }
+    private void writeFirebase(BusinessCardModel businessCardModel){
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("name", businessCardModel.getName());
+        user.put("mail", businessCardModel.getMail());
+        user.put("company", businessCardModel.getCompany());
+        user.put("phone_number", businessCardModel.getPhone_number());
+        user.put("job", businessCardModel.getJob());
+
+
+        db.collection("profiles").document(Objects.requireNonNull(Constants.googleSignInAccount.getId()))
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
+    }
+    private void readFirebase(){
+        db.collection("profiles").document(Objects.requireNonNull(Constants.googleSignInAccount.getId()))
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        binding.editTextName.setText(Objects.requireNonNull(document.get("name")).toString());
+                        binding.editTextMail.setText(Objects.requireNonNull(document.get("mail")).toString());
+                        binding.editTextPhone.setText(Objects.requireNonNull(document.get("phone_number")).toString());
+                        binding.editTextCompany.setText(Objects.requireNonNull(document.get("company")).toString());
+                        binding.editTextJob.setText(Objects.requireNonNull(document.get("job")).toString());
+                    } else {
+                        Log.w("TAG", "Error getting documents.", task.getException());
+                    }
+                });
     }
 
 }
